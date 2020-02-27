@@ -1,0 +1,29 @@
+button {
+    float: left;
+    display: block;
+    height: 100px;
+    width: 100px;
+}
+
+.container  {
+    border: solid 1px;
+    position: absolute;
+    display: block;
+    margin: auto;
+    right: 300px;
+    top: 100px;
+    height: 470px;
+    width: 400px;
+    left: 400px;
+
+}
+
+#result {
+    width: 400px;
+    text-align: center;
+}
+
+#clear {
+    width: 400px;
+    height: 50px
+}
