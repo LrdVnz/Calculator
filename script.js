@@ -2,28 +2,33 @@ let x;
 let y;
 let operator;
 
+let styleOperators = document.getElementById("operators").children;
+for ( f = 0; f < styleOperators.length; f++){
+styleOperators[f].style.cssText = "background-color: #e3a452;"
+}
+
 function add(){
-    return x + y;
+    return Math.round((x + y) * 100)/100;
 }
 
 function subtract(){
-    return x - y;
+    return Math.round((x - y) *100)/100;
 }
 
 function multiply(){
-    return x * y;
+    return Math.round((x * y) *100)/100;
 }
 
 function divide(){
-    return x / y ;
+    return Math.round((x / y) *100)/100 ;
 }
 
 function remainder(){
-    return x % y ; 
+    return Math.round((x % y) *100)/100 ; 
 }
 
 function potential(){
-    return x**y;
+    return Math.round((x**y) *100)/100;
 }
 
 function operate(){
@@ -31,10 +36,14 @@ function operate(){
        return add()
     } else if(operator == "-"){
        return subtract()
-    } else if(operator == "*"){
+    } else if(operator == "x"){
        return multiply()
     } else if(operator == "/"){
-       return divide()
+        if(y == 0){
+            alert("Error!")
+        } else{  
+            return divide()
+        }
     } else if(operator == "%"){
        return remainder()
     } else if(operator == "**"){
@@ -49,17 +58,21 @@ let result = document.querySelector("#result");
 let i = -1 ; 
 let storeArray = [];
 let showArray = [];
-let regex = /[^0-9]/;
+let regex = /[^0-9, .]/;
+let newReg = /[0-9]/;
 
 function doEqual(){
-          console.log(operate());
-          let valueFinal = operate();
-          result.textContent = valueFinal;
+          let equalValue = operate();
+          result.textContent  = equalValue;
+          x = undefined;
+          y = undefined; 
           showArray = [];
-          storeArray = [];
-          x = undefined; 
-          y = undefined;
+          storeArray = [equalValue]
 }
+
+let setValue; 
+let j = -1 ; 
+let decimalReg = /[^\d*\.?\d+$]/
 
 buttons.forEach((elem) => {
     elem.addEventListener("click", (e) => {
@@ -68,26 +81,37 @@ buttons.forEach((elem) => {
       showArray.push(storeValue)
      if(elem.textContent === "clear"){
          result.textContent = "";
-         i = 0;
-     } else if(storeValue.match(regex)){
-         storeArray.pop();
-          if( y != undefined && x != undefined) {
-              doEqual();
-          } else if(x != undefined){
-            numY = storeArray.join("");
-            y = parseInt(numY)
-            storeArray = [];
-          } else {
-              numX = storeArray.join("");
-              x = parseInt(numX);
-              storeArray = [];
+         showArray = [];
+         storeArray = [];
+         storeValue = undefined ; 
+         y = undefined;
+         x = undefined; 
+         i = -1;
+     }else if(storeValue.match(regex)){
+        let valueFinal; 
+        function sequence() {
+           valueFinal = operate();
+           result.textContent = valueFinal;
+           showArray = [];
+           storeArray = [];
+           x = valueFinal;
+           y = undefined; 
+        }   
+        if(storeValue.match(decimalReg))
+           if(x != undefined){
+                storeArray.pop();
+                numY = storeArray.join("");
+                y = parseFloat(numY);
+         return (storeValue == "=")? doEqual() : sequence();
+               } else {
+                 storeArray.pop();
+                 numX = storeArray.join("");
+                 x = parseFloat(numX);
+                 storeArray = [];
+               }
+              operator = storeValue; 
           }
-       if(storeValue == "="){
-          doEqual(); 
-       } else {
-           operator = storeValue; 
-       }
-    } else if(i >= 0) {
+     if(i >= 0) {
          result.textContent = showArray.join("")
      } else {
         result.textContent = elem.textContent; 
