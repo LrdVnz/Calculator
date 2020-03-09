@@ -2,11 +2,6 @@ let x;
 let y;
 let operator;
 
-let styleOperators = document.getElementById("operators").children;
-for ( f = 0; f < styleOperators.length; f++){
-styleOperators[f].style.cssText = "background-color: #e3a452;"
-}
-
 function add(){
     return Math.round((x + y) * 100)/100;
 }
@@ -55,11 +50,12 @@ function operate(){
 
 let buttons = document.querySelectorAll("button");
 let result = document.querySelector("#result");
+let container = document.querySelector(".container")
 let i = -1 ; 
 let storeArray = [];
 let showArray = [];
-let regex = /[^0-9, .]/;
-let newReg = /[0-9]/;
+let regex = /[^0-9, ., CE]/g;
+let newReg = /[0-9]/g;
 
 function doEqual(){
           let equalValue = operate();
@@ -72,13 +68,18 @@ function doEqual(){
 
 let setValue; 
 let j = -1 ; 
-let decimalReg = /[^\d*\.?\d+$]/
 
 buttons.forEach((elem) => {
     elem.addEventListener("click", (e) => {
+    if(elem.textContent == "CE"){
+        showArray.pop();
+        storeArray.pop();
+        result.textContent = showArray.join("")
+    } else {
       storeValue = elem.textContent;
       storeArray.push(storeValue);
-      showArray.push(storeValue)
+      showArray.push(storeValue);
+    }
      if(elem.textContent === "clear"){
          result.textContent = "";
          showArray = [];
@@ -87,7 +88,7 @@ buttons.forEach((elem) => {
          y = undefined;
          x = undefined; 
          i = -1;
-     }else if(storeValue.match(regex)){
+     }  else if(storeValue.match(regex)){
         let valueFinal; 
         function sequence() {
            valueFinal = operate();
@@ -97,7 +98,6 @@ buttons.forEach((elem) => {
            x = valueFinal;
            y = undefined; 
         }   
-        if(storeValue.match(decimalReg))
            if(x != undefined){
                 storeArray.pop();
                 numY = storeArray.join("");
@@ -117,5 +117,5 @@ buttons.forEach((elem) => {
         result.textContent = elem.textContent; 
      }
      i++;
-    })
+ })
 });

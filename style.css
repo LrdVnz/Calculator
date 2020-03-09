@@ -6,47 +6,48 @@
 body {
     font-family: "Digital-7";
     font-size: 22px;
+    background-color: #171515;
 }
 
 button {
     font-family: "Digital-7";
     float: left;
     display: block;
-    height: 100px;
-    width: 100px;
+    height: 80px;
+    width: 80px;
     border-radius: 3px;
 }
 
 button:focus{
-   background-color: yellow;
+   background-color: orange;
+}
+
+button:hover {
+   background-color: gray;
 }
 .container  {
-    border: solid 1px;
+    border: solid 10px red;
     position: absolute;
     display: block;
     margin: auto;
     right: 300px;
     top: 100px;
-    height: 470px;
+    height: 336px;
     width: 400px;
     left: 400px;
 
 }
 
 #result {
-    width: 400px;
     text-align: center;
+    display:block;
+    background-color: white;
 }
 
-#clear {
-    width: 200px;
-    height: 50px
+#CE, #clear, #multiply, #add, #subtract, #divide, #point, #remainder, #potential, #equals {
+    background-color: limegreen;
 }
 
-#equals {
-    height: 50px;
-}
-
-#point {
-    height: 50px;
+#one, #two, #three, #four, #five, #six , #seven, #eight, #nine, #zero {
+    background-color: #bece8f;
 }
