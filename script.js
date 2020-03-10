@@ -72,15 +72,21 @@ let j = -1 ;
 buttons.forEach((elem) => {
     elem.addEventListener("click", (e) => {
     if(elem.textContent == "CE"){
+        if(showArray == []){
+            storeValue = undefined;
+            storeArray = [];
+            result.textContent = "";
+        } else {
         showArray.pop();
         storeArray.pop();
         result.textContent = showArray.join("")
+        }
     } else {
       storeValue = elem.textContent;
       storeArray.push(storeValue);
       showArray.push(storeValue);
     }
-     if(elem.textContent === "clear"){
+     if(elem.textContent === "C"){
          result.textContent = "";
          showArray = [];
          storeArray = [];

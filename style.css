@@ -1,53 +1,59 @@
-@font-face{
-    font-family : "Digital-7";
-    src: url("digital-7(italic).ttf");
-}
 
 body {
-    font-family: "Digital-7";
+    font-family: 'Noto Sans KR', sans-serif;
     font-size: 22px;
-    background-color: #171515;
+    background-image : url("XPBackGModified.jpeg");
 }
 
 button {
-    font-family: "Digital-7";
+    font-family: 'Noto Sans KR', sans-serif;
+    border: solid 2px gray;
     float: left;
     display: block;
     height: 80px;
     width: 80px;
-    border-radius: 3px;
+    border-radius: 4px;
 }
 
-button:focus{
-   background-color: orange;
-}
+button:focus{}
 
 button:hover {
-   background-color: gray;
+   background-color: #c6c5c5;
+}
+.calculator {
+    position: absolute;
+    display: block;
+    left: 793px;
+    right: 300px;
 }
 .container  {
-    border: solid 10px red;
+    border: solid 3px #0555e2;
     position: absolute;
     display: block;
     margin: auto;
-    right: 300px;
     top: 100px;
-    height: 336px;
+    height: 354px;
     width: 400px;
-    left: 400px;
-
 }
 
 #result {
-    text-align: center;
+    text-align: right;
     display:block;
-    background-color: white;
+    background-color: #e3e3e3;
+    height: 34px;
 }
 
 #CE, #clear, #multiply, #add, #subtract, #divide, #point, #remainder, #potential, #equals {
-    background-color: limegreen;
+    color: red;
 }
 
 #one, #two, #three, #four, #five, #six , #seven, #eight, #nine, #zero {
-    background-color: #bece8f;
+    color: #4236c8;
+}
+
+#xpcalctop {
+    display: block;
+    position: absolute;
+    top: 49px;
+    width: 406px;
 }
